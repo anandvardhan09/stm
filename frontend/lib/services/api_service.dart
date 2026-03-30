@@ -43,10 +43,20 @@ class ApiService {
         'password': password,
       }),
     );
-    if (response.statusCode == 200) {
-      return AuthUser.fromJson(jsonDecode(response.body));
+    // 🔥 DEBUG PRINTS
+    print("STATUS: ${response.statusCode}");
+    print("BODY: ${response.body}");
+
+    if (response.statusCode == 200 || response.statusCode == 201) {
+      if (response.body.isEmpty) {
+        throw Exception("Empty response from server");
+      }
+
+      final data = jsonDecode(response.body);
+      return AuthUser.fromJson(data);
+    } else {
+      throw Exception("Signup failed: ${response.body}");
     }
-    throw _parseError(response);
   }
 
   // ── Tasks ─────────────────────────────────────────────
