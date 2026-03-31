@@ -1,6 +1,5 @@
 class ApiConstants {
-    static const String baseUrl = String.fromEnvironment(
-    'API_BASE_URL' );
+    static const String baseUrl = "https://stm-backend-zuxo.onrender.com/api";
   static const String authLogin = '$baseUrl/auth/login';
   static const String authSignup = '$baseUrl/auth/signup';
   static const String tasks = '$baseUrl/tasks';
